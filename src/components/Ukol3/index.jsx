@@ -1,4 +1,5 @@
-import { Product } from "./Product";
+import { Product } from './Product';
+import { useState } from 'react';
 
 /*
   Zadání: Budeme chtít, aby uživatel mohl klikat na kousky oblečení a u každého viděl, kolik
@@ -17,16 +18,65 @@ import { Product } from "./Product";
 */
 
 export const Ukol3 = () => {
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const [count3, setCount3] = useState(0);
+  const [count4, setCount4] = useState(0);
+  const [finalPrice, setFinalPrice] = useState(0);
+  const changeCount1 = () => {
+    setCount1(count1 + 1);
+  };
+  const changeCount2 = () => {
+    setCount2(count2 + 1);
+  };
+  const changeCount3 = () => {
+    setCount3(count3 + 1);
+  };
+  const changeCount4 = () => {
+    setCount4(count4 + 1);
+  };
+  const changePrice = (price) => {
+    setFinalPrice(finalPrice + price);
+  };
+
   return (
     <>
       <p>
-        Cena: <strong>0 Kč</strong>
+        Cena: <strong>{finalPrice} Kč</strong>
       </p>
       <div className="products">
-        <Product image="/clothing/item01.jpg" name="Bunda" price={500} />
-        <Product image="/clothing/item02.jpg" name="Halenka" price={1200} />
-        <Product image="/clothing/item03.jpg" name="Svetr" price={1500} />
-        <Product image="/clothing/item04.jpg" name="Mikina" price={800} />
+        <Product
+          image="/clothing/item01.jpg"
+          name="Bunda"
+          price={500}
+          onAddToCart={changePrice}
+          onAmountClick={changeCount1}
+          value={count1}
+        />
+        <Product
+          image="/clothing/item02.jpg"
+          name="Halenka"
+          price={1200}
+          onAddToCart={changePrice}
+          onAmountClick={changeCount2}
+          value={count2}
+        />
+        <Product
+          image="/clothing/item03.jpg"
+          name="Svetr"
+          price={1500}
+          onAddToCart={changePrice}
+          onAmountClick={changeCount3}
+          value={count3}
+        />
+        <Product
+          image="/clothing/item04.jpg"
+          name="Mikina"
+          price={800}
+          onAddToCart={changePrice}
+          onAmountClick={changeCount4}
+          value={count4}
+        />
       </div>
     </>
   );
